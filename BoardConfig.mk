@@ -21,6 +21,11 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := krait
 
+# Use the CM PowerHAL
+TARGET_USES_CM_POWERHAL := true
+CM_POWERHAL_EXTENSION := qcom
+TARGET_POWERHAL_NO_TOUCH_BOOST := true
+
 # Krait optimizations
 TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 TARGET_USE_KRAIT_PLD_SET := true
@@ -57,9 +62,6 @@ TARGET_BOOTLOADER_NAME=mako
 TARGET_BOARD_INFO_FILE := device/lge/mako/board-info.txt
 
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/mako/bluetooth
-
-# Use the CM PowerHAL
-TARGET_USES_CM_POWERHAL := true
 
 # FIXME: HOSTAPD-derived wifi driver
 BOARD_HAS_QCOM_WLAN := true
