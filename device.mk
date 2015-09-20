@@ -138,6 +138,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.audio.lowlatency.rec=false \
 	af.resampler.quality=4
 
+# Faster scrolling
+# windowsmgr.max_events_per_sec := 60..300
+#
+PRODUCT_PROPERTY_OVERRIDES += \
+    windowsmgr.max_events_per_sec=150
 
 # Do not power down SIM card when modem is sent to Low Power Mode.
 PRODUCT_PROPERTY_OVERRIDES += \
