@@ -147,6 +147,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_PACKAGES += \
