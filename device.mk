@@ -248,6 +248,11 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	telephony.lteOnCdmaDevice=0
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	telephony.lteOnGsmDevice=1 \
+	ro.telephony.default_network=9 \
+	ro.ril.def.preferred.network=9
+
 ifeq ($(findstring tiny, $(TARGET_PRODUCT)),)
 PRODUCT_PROPERTY_OVERRIDES += \
 	drm.service.enabled=true
