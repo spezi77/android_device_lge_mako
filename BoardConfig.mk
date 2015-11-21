@@ -69,6 +69,7 @@ BOARD_EGL_CFG := device/lge/mako/egl.cfg
 #BOARD_USES_HGL := true
 #BOARD_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
+TARGET_USE_ION_COMPAT := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
