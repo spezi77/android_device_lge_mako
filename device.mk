@@ -259,7 +259,7 @@ endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
-	wifi.supplicant_scan_interval=15
+	wifi.supplicant_scan_interval=150
 
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
