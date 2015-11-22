@@ -128,3 +128,7 @@ MALLOC_IMPL := dlmalloc
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_HARDWARE_CLASS := device/lge/mako/cmhw/
+
+# TWRP Flags
+DEVICE_RESOLUTION := 720x1280
+TW_THEME := portrait_hdpi
