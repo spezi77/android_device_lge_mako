@@ -43,5 +43,8 @@
 
     <!-- Use alternative way to blur lockscreen -->
     <bool name="blur_need_alternative_way">true</bool>
+
+    <!-- Pulse stroke width -->
+    <dimen name="config_pulsePathStrokeWidth">25dp</dimen>
 </resources>
 
