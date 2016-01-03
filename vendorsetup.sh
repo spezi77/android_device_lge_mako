@@ -14,5 +14,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo cm_mako-userdebug
+add_lunch_combo bs_mako-userdebug
 

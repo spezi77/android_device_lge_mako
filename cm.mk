@@ -13,7 +13,7 @@ $(call inherit-product, device/lge/mako/full_mako.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := mako
-PRODUCT_NAME := cm_mako
+PRODUCT_NAME := bs_mako
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 4
 PRODUCT_MANUFACTURER := LGE
