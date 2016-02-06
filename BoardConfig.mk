@@ -37,11 +37,11 @@ KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-5.3/bin
 
 # Optimizations
-#CLANG_O3 := true
+CLANG_O3 := true
 #STRICT_ALIASING := true
-#KRAIT_TUNINGS := true
-#GRAPHITE_OPTS := true
-#ENABLE_GCCONLY := true
+KRAIT_TUNINGS := true
+GRAPHITE_OPTS := true
+ENABLE_GCCONLY := true
 
 TOUCH_BOOST_DEBUG := false
 
