@@ -361,6 +361,12 @@ service thermald /system/bin/thermald
     class main
     group radio system
 
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
@@ -394,3 +400,6 @@ service diag_mdlog /system/bin/diag_mdlog -s 100
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
+
+on property:sys.boot_completed=1
+    start qcom-post-boot
