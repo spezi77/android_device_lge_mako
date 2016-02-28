@@ -46,9 +46,6 @@ KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-ea
 
 TOUCH_BOOST_DEBUG := false
 
-# Give up OpenJDK enforcement
-DISABLE_OPENJDK_CHECK := true
-
 BLOCK_BASED_OTA := false
 
 # TWRP Flags
