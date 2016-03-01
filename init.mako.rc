@@ -209,7 +209,7 @@ on post-fs-data
 
     # Enable Faux's Intelliplug
     write /sys/module/intelli_plug/parameters/intelli_plug_active 1
-    write /sys/module/intelli_plug/parameters/nr_run_profile_sel 3
+    write /sys/module/intelli_plug/parameters/nr_run_profile_sel 1
     write /sys/module/intelli_plug/parameters/touch_boost_active 1
     write /sys/module/intelli_plug/parameters/nr_run_hysteresis 8
     write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
@@ -221,7 +221,7 @@ on post-fs-data
     write /sys/module/cpu_boost/parameters/sync_threshold 0
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
-    # Fast Charge
+    # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
 
     # adjust vibrator amplitude
@@ -244,21 +244,21 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "intelliactive"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "intelliactive"
     restorecon_recursive /sys/devices/system/cpu/cpufreq/intelliactive
-    write /sys/devices/system/cpu/cpufreq/intelliactive/above_hispeed_delay 15000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/above_hispeed_delay 20000
     write /sys/devices/system/cpu/cpufreq/intelliactive/boost 0
     write /sys/devices/system/cpu/cpufreq/intelliactive/boostpulse_duration 80000
     write /sys/devices/system/cpu/cpufreq/intelliactive/go_hispeed_load 99
-    write /sys/devices/system/cpu/cpufreq/intelliactive/hispeed_freq 1026000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/hispeed_freq 1512000
     write /sys/devices/system/cpu/cpufreq/intelliactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/intelliactive/min_sample_time 60000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/sampling_down_factor 120000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/sync_freq 1026000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/target_loads 95 1134000:90
-    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_rate 15000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_slack 60000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/two_phase_freq 810000,810000,810000,810000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_freq 1134000
-    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_load 90
+    write /sys/devices/system/cpu/cpufreq/intelliactive/min_sample_time 80000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/sampling_down_factor 0
+    write /sys/devices/system/cpu/cpufreq/intelliactive/sync_freq 702000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/target_loads 90
+    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_slack 80000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/two_phase_freq 1350000,1350000,1350000,1350000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_freq 1026000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_load 95
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 81000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 81000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 81000
