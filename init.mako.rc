@@ -196,9 +196,9 @@ on post-fs-data
 
     # Disable thermald
     stop thermald
-    write /sys/module/msm_thermal/parameters/enabled 0
 
     # Enable Faux's Intellithermal
+    write /sys/module/msm_thermal/parameters/enabled Y
     write /sys/module/msm_thermal/parameters/intelli_enabled 1
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/module/msm_thermal/parameters/limit_temp_degC 70
@@ -208,8 +208,8 @@ on post-fs-data
     write /sys/module/msm_thermal/parameters/thermal_limit_high 19
 
     # Enable Faux's Intelliplug
-    write /sys/module/intelli_plug_parameters/intelli_plug_active 1
-    write /sys/module/intelli_plug/parameters/eco_mode_active 1
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    write /sys/module/intelli_plug/parameters/nr_run_profile_sel 3
     write /sys/module/intelli_plug/parameters/touch_boost_active 1
     write /sys/module/intelli_plug/parameters/nr_run_hysteresis 8
     write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
@@ -259,10 +259,10 @@ on post-fs-data
     write /sys/devices/system/cpu/cpufreq/intelliactive/two_phase_freq 810000,810000,810000,810000
     write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_freq 1134000
     write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_load 90
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 162000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 162000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 162000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 162000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 81000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 81000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 81000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 81000
 
     # KRAIT C1 STATE (screen flicking if enabled)
     write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 0
@@ -300,7 +300,7 @@ on post-fs-data
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
 
     # Disable msm_hsic_host wakelock
-    write /sys/module/wakeup/parameters/enable_msm_hsic_ws 0
+    write /sys/module/wakeup/parameters/enable_msm_hsic_ws Y
 
     # disable diag port
     rm /dev/diag
