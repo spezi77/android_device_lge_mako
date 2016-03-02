@@ -98,14 +98,6 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
     #Enable logging of the wake up reasons in the kernel log
     write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
@@ -188,20 +180,15 @@ on post-fs-data
 
     # Disable mpdecision
     stop mpdecision
-    write /sys/module/msm_mpdecision/enabled 0
-    write /sys/kernel/msm_mpdecision/conf/boost_enabled 0
-    write /sys/kernel/msm_mpdecision/conf/scroff_single_core 0
 
     # Disable thermald
     stop thermald
 
     # Enable Faux's Intellithermal
     write /sys/module/msm_thermal/parameters/enabled Y
-    write /sys/module/msm_thermal/parameters/intelli_enabled 1
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/module/msm_thermal/parameters/limit_temp_degC 70
     write /sys/module/msm_thermal/parameters/core_limit_temp_degC 90
-    write /sys/module/msm_thermal/parameters/fpoll_ms 250
     write /sys/module/msm_thermal/parameters/thermal_limit_low 1
     write /sys/module/msm_thermal/parameters/thermal_limit_high 19
 
@@ -214,7 +201,6 @@ on post-fs-data
     write /sys/module/intelli_plug/parameters/screen_off_max 162000
 
     # Enable CPU Boost
-    write /sys/module/cpu_boost/parameters/cpuboost_enable 1
     write /sys/module/cpu_boost/parameters/boost_ms 500
     write /sys/module/cpu_boost/parameters/sync_threshold 0
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
@@ -267,10 +253,6 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled 0
     write /sys/module/pm_8x60/modes/cpu2/retention/idle_enabled 0
     write /sys/module/pm_8x60/modes/cpu3/retention/idle_enabled 0
-    write /sys/module/pm_8x60/modes/cpu0/retention/suspend_enabled 0
-    write /sys/module/pm_8x60/modes/cpu1/retention/suspend_enabled 0
-    write /sys/module/pm_8x60/modes/cpu2/retention/suspend_enabled 0
-    write /sys/module/pm_8x60/modes/cpu3/retention/suspend_enabled 0
 
     # KRAIT C2 STATE
     write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled 0
