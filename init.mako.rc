@@ -192,13 +192,16 @@ on post-fs-data
     write /sys/module/msm_thermal/parameters/thermal_limit_low 1
     write /sys/module/msm_thermal/parameters/thermal_limit_high 19
 
-    # Enable Faux's Intelliplug
-    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    # Disable Faux's Intelliplug
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 0
     write /sys/module/intelli_plug/parameters/nr_run_profile_sel 1
     write /sys/module/intelli_plug/parameters/touch_boost_active 1
     write /sys/module/intelli_plug/parameters/nr_run_hysteresis 8
     write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
     write /sys/module/intelli_plug/parameters/screen_off_max 162000
+
+    # Enable Franco's Mako Hotplug
+    write /sys/class/misc/mako_hotplug_control/enabled 1 
 
     # Enable CPU Boost
     write /sys/module/cpu_boost/parameters/boost_ms 500
@@ -207,6 +210,9 @@ on post-fs-data
 
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
+
+    # Enable Arch Specific Power Savings
+    write /sys/kernel/sched/arch_power 1
 
     # adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 70
