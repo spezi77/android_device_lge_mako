@@ -292,8 +292,6 @@ on post-fs-data
     rm /dev/diag
 
     # Use custom gamma profile (PA Halfbreed)
-    write /sys/devices/platform/kcal_ctrl.0/kcal 255 255 255
-    write /sys/devices/platform/kcal_ctrl.0/kcal 1
     write /sys/class/misc/gammacontrol/blue_blacks 118
     write /sys/class/misc/gammacontrol/green_blacks 118
     write /sys/class/misc/gammacontrol/red_blacks 118
