@@ -291,23 +291,6 @@ on post-fs-data
     # disable diag port
     rm /dev/diag
 
-    # Use custom gamma profile (PA Halfbreed)
-    write /sys/class/misc/gammacontrol/blue_blacks 118
-    write /sys/class/misc/gammacontrol/green_blacks 118
-    write /sys/class/misc/gammacontrol/red_blacks 118
-    write /sys/class/misc/gammacontrol/blue_greys 64
-    write /sys/class/misc/gammacontrol/green_greys 64
-    write /sys/class/misc/gammacontrol/red_greys 64
-    write /sys/class/misc/gammacontrol/blue_mids 68
-    write /sys/class/misc/gammacontrol/green_mids 68
-    write /sys/class/misc/gammacontrol/red_mids 68
-    write /sys/class/misc/gammacontrol/blue_whites 68
-    write /sys/class/misc/gammacontrol/green_whites 32
-    write /sys/class/misc/gammacontrol/red_whites 32
-    write /sys/class/misc/gammacontrol/contrast 32
-    write /sys/class/misc/gammacontrol/brightness 4
-    write /sys/class/misc/gammacontrol/saturation 80
-
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
