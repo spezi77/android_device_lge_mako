@@ -200,8 +200,8 @@ on post-fs-data
     write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
     write /sys/module/intelli_plug/parameters/screen_off_max 162000
 
-    # Enable Franco's Mako Hotplug
-    write /sys/class/misc/mako_hotplug_control/enabled 1 
+    # Disable Franco's Mako Hotplug
+    write /sys/class/misc/mako_hotplug_control/enabled 0 
 
     # Enable CPU Boost
     write /sys/module/cpu_boost/parameters/boost_ms 500
