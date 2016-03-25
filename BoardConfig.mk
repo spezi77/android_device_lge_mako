@@ -40,6 +40,8 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/google/msm
 TARGET_KERNEL_CONFIG := faux_mako_defconfig
+# Keep this as a fallback
+TARGET_PREBUILT_KERNEL := device/lge/mako/prebuilt/kernel/zImage
 
 # Kernel target toolchain
 TARGET_GCC_VERSION_ARM := 4.9
