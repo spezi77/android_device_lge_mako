@@ -236,6 +236,39 @@ on post-fs-data
     mkdir /dev/socket/mpdecision 0770 system system
     chmod 2770 /dev/socket/mpdecision
 
+    # CPU HOTPLUG tweaks
+
+    # Disable mpdecision
+    stop mpdecision
+
+    # Disable thermald
+    stop thermald
+
+    # Enable Faux's Intellithermal
+    write /sys/module/msm_thermal/parameters/enabled Y
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/limit_temp_degC 70
+    write /sys/module/msm_thermal/parameters/core_limit_temp_degC 90
+    write /sys/module/msm_thermal/parameters/thermal_limit_low 1
+    write /sys/module/msm_thermal/parameters/thermal_limit_high 19
+
+    # Enable Faux's Intelliplug
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    write /sys/module/intelli_plug/parameters/nr_run_profile_sel 3
+    write /sys/module/intelli_plug/parameters/touch_boost_active 1
+    write /sys/module/intelli_plug/parameters/nr_run_hysteresis 8
+    write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
+    write /sys/module/intelli_plug/parameters/screen_off_max 384000
+
+    # Enable CPU Boost
+    write /sys/module/cpu_boost/parameters/boost_ms 500
+    write /sys/module/cpu_boost/parameters/sync_threshold 1728000
+    write /sys/module/cpu_boost/parameters/input_boost_freq 1497600
+    write /sys/module/cpu_boost/parameters/input_boost_ms 40
+
+    # Enable Fast Charge
+    write /sys/kernel/fast_charge/force_fast_charge 1
+
     # adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 70
 
@@ -264,24 +297,36 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
-    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 60
-    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 3
-    write /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq 918000
-    write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 1026000
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
+
+    # intelliactive Tweaks
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "intelliactive"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "intelliactive"
+    restorecon_recursive /sys/devices/system/cpu/cpufreq/intelliactive
+    write /sys/devices/system/cpu/cpufreq/intelliactive/above_hispeed_delay 20000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/boost 0
+    write /sys/devices/system/cpu/cpufreq/intelliactive/boostpulse_duration 80000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpufreq/intelliactive/hispeed_freq 1512000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/intelliactive/min_sample_time 80000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/sampling_down_factor 0
+    write /sys/devices/system/cpu/cpufreq/intelliactive/sync_freq 702000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/target_loads 90
+    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/timer_slack 80000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/two_phase_freq 1350000,1350000,1350000,1350000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_freq 1026000
+    write /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_load 95
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1512000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1512000
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -291,6 +336,18 @@ on post-fs-data
     chown system system /sys/devices/system/cpu/cpu1/online
     chown system system /sys/devices/system/cpu/cpu2/online
     chown system system /sys/devices/system/cpu/cpu3/online
+
+    # IO scheduler
+    # Set BFQ
+    write /sys/block/mmcblk0/queue/scheduler bfq
+
+    # GPU
+    # Set max gpu freq to 487 mhz and governor to simple
+    write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk 487000
+    write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
+
+    # TCP congestion control
+    write /proc/sys/net/ipv4/tcp_congestion_control westwood
 
     # Hardware tunables
     chown root system /sys/class/timed_output/vibrator/amp
@@ -314,11 +371,6 @@ on post-fs-data
     restorecon /sys/devices/platform/mipi_lgit.1537/kgamma_g
     restorecon /sys/devices/platform/mipi_lgit.1537/kgamma_b
     restorecon /sys/devices/platform/mipi_lgit.1537/kgamma_apply
-
-    write /sys/module/cpu_boost/parameters/boost_ms 20
-    write /sys/module/cpu_boost/parameters/sync_threshold 1728000
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1497600
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
