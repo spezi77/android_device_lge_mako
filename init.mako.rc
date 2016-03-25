@@ -36,6 +36,7 @@ on init
 
 on fs
     mount_all ./fstab.mako
+    swapon_all ./fstab.mako
     restorecon_recursive /persist
 
 on early-boot
