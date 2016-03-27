@@ -32,7 +32,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=mako lpj=
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 
 # Inline kernel building
-TARGET_KERNEL_CONFIG := cyanogen_mako_defconfig
+TARGET_KERNEL_CONFIG := hellspawn_mako_defconfig
 TARGET_KERNEL_SOURCE := kernel/google/msm
 TARGET_GCC_VERSION_ARM := 5.3
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
