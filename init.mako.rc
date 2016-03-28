@@ -283,11 +283,6 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
 
-    # GPU
-    # Set max gpu freq to 487 mhz and governor to simple
-    write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk 487000
-    write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
-
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
 
