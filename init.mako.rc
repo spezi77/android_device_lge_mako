@@ -196,8 +196,8 @@ on post-fs-data
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
 
-    # Enable Arch Specific Power Savings
-    write /sys/kernel/sched/arch_power 1
+    # Disable fsync for increased I/O performance
+    write /sys/module/sync/parameters/fsync_enabled 0
 
     # adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 70
