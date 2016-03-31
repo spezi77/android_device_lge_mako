@@ -141,7 +141,4 @@ EXTENDED_FONT_FOOTPRINT := true
 
 MALLOC_IMPL := dlmalloc
 
-# Enable workaround for slow rom flash
-BOARD_SUPPRESS_SECURE_ERASE := true
-
 -include vendor/lge/mako/BoardConfigVendor.mk
