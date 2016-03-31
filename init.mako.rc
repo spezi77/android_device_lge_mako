@@ -231,10 +231,10 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 94000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 94000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 94000
-    write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 189000
-    write /sys/devices/system/cpu/cpu1/cpufreq/screen_off_max_freq 189000
-    write /sys/devices/system/cpu/cpu2/cpufreq/screen_off_max_freq 189000
-    write /sys/devices/system/cpu/cpu3/cpufreq/screen_off_max_freq 189000
+    write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 1026000
+    write /sys/devices/system/cpu/cpu1/cpufreq/screen_off_max_freq 1026000
+    write /sys/devices/system/cpu/cpu2/cpufreq/screen_off_max_freq 1026000
+    write /sys/devices/system/cpu/cpu3/cpufreq/screen_off_max_freq 1026000
 
     # KRAIT C1 STATE (screen flicking if enabled)
     write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 0
