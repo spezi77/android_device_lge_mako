@@ -185,6 +185,9 @@ on post-fs-data
     # Disable thermald
     stop thermald
 
+    # Enable autosmp-hotplug
+    write /sys/module/autosmp/parameters/enabled Y
+
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
 
@@ -258,6 +261,9 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
+
+    # Set GPU governor to simple
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
 
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
