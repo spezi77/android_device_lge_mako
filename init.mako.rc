@@ -185,8 +185,23 @@ on post-fs-data
     # Disable thermald
     stop thermald
 
+    # Disable alucard-hotplug
+    write /sys/kernel/alucard_hotplug/hotplug_enable 0
+
     # Enable autosmp-hotplug
     write /sys/module/autosmp/parameters/enabled Y
+
+    # Disable intelliplug
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 0
+
+    # Disable lazy-hotplug
+    write /sys/module/lazyplug/parameters/lazyplug_active 0
+
+    # Disable mako-hotplug
+    write /sys/class/misc/mako_hotplug_control/enabled 0
+
+    # Disable zendecision
+    write /sys/kernel/zen_decision/enabled 0
 
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
