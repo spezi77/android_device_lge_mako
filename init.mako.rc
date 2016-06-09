@@ -191,11 +191,8 @@ on post-fs-data
     # Enable autosmp-hotplug
     write /sys/module/autosmp/parameters/enabled Y
 
-    # Disable intelliplug
-    write /sys/module/intelli_plug/parameters/intelli_plug_active 0
-
-    # Disable lazy-hotplug
-    write /sys/module/lazyplug/parameters/lazyplug_active 0
+    # Disable dyn_hotplug
+    write /sys/module/dyn_hotplug/parameters/enabled 0
 
     # Disable mako-hotplug
     write /sys/class/misc/mako_hotplug_control/enabled 0
@@ -205,9 +202,6 @@ on post-fs-data
 
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
-
-    # Disable fsync for increased I/O performance
-    write /sys/module/sync/parameters/fsync_enabled 0
 
     # adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 70
@@ -282,9 +276,6 @@ on post-fs-data
 
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
-
-    # Disable msm_hsic_host wakelock
-    write /sys/module/wakeup/parameters/enable_msm_hsic_ws Y
 
     # disable diag port
     rm /dev/diag
