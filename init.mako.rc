@@ -277,6 +277,9 @@ on post-fs-data
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
 
+    # Ensure that fsync is enabled per default to prevent data loss
+    write /sys/module/sync/parameters/fsync_enabled 0
+
     # disable diag port
     rm /dev/diag
 
