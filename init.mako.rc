@@ -177,28 +177,25 @@ on post-fs-data
     # communicate with mpdecision and thermald
     #mkdir /dev/socket/mpdecision 2770 root system
 
-    # CPU HOTPLUG tweaks
+    # <-- Revival Tweaks BEGIN -->
 
-    # Disable mpdecision
+    # Disable mpdecision service to prevent conflicts with other hotplug drivers
     stop mpdecision
 
-    # Disable thermald
+    # Run mpdfake service to absorb logcat spam
+    start mpdfake
+
+    # Disable thermald service
     stop thermald
 
-    # Disable alucard-hotplug
-    write /sys/kernel/alucard_hotplug/hotplug_enable 0
+    # Disable autosmp-hotplug
+    write /sys/module/autosmp/parameters/enabled 0
 
-    # Enable autosmp-hotplug
-    write /sys/module/autosmp/parameters/enabled Y
-
-    # Disable dyn_hotplug
-    write /sys/module/dyn_hotplug/parameters/enabled 0
+    # Enable dyn_hotplug
+    write /sys/module/dyn_hotplug/parameters/enabled 1
 
     # Disable mako-hotplug
     write /sys/class/misc/mako_hotplug_control/enabled 0
-
-    # Disable zendecision
-    write /sys/kernel/zen_decision/enabled 0
 
     # Enable Fast Charge
     write /sys/kernel/fast_charge/force_fast_charge 1
@@ -217,36 +214,26 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
 
-    # hellsactive Tweaks
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "hellsactive"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "hellsactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "hellsactive"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "hellsactive"
-    restorecon_recursive /sys/devices/system/cpu/cpufreq/hellsactive
-    write /sys/devices/system/cpu/cpufreq/hellsactive/above_hispeed_delay 20000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/align_windows 1
-    write /sys/devices/system/cpu/cpufreq/hellsactive/boostpulse_duration 1000000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/closest_freq_selection 0
-    write /sys/devices/system/cpu/cpufreq/hellsactive/freq_calc_thresh 94500
-    write /sys/devices/system/cpu/cpufreq/hellsactive/go_hispeed_load 99
-    write /sys/devices/system/cpu/cpufreq/hellsactive/hispeed_freq 1134000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/input_boost_freq 1026000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/hellsactive/max_freq_hysteresis 0
-    write /sys/devices/system/cpu/cpufreq/hellsactive/min_sample_time 80000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/target_loads 90
-    write /sys/devices/system/cpu/cpufreq/hellsactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/timer_slack 80000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/two_phase_freq 1350000,1350000,1350000,1350000
-    write /sys/devices/system/cpu/cpufreq/hellsactive/use_freq_calc_thresh 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+    # CPU governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
+    restorecon_recursive /sys/devices/system/cpu/cpufreq/ondemand
     write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 1026000
     write /sys/devices/system/cpu/cpu1/cpufreq/screen_off_max_freq 1026000
     write /sys/devices/system/cpu/cpu2/cpufreq/screen_off_max_freq 1026000
     write /sys/devices/system/cpu/cpu3/cpufreq/screen_off_max_freq 1026000
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 95
+    write /sys/devices/system/cpu/cpufreq/ondemand/down_threshold 8
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
+    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/ondemand/touch_load 55
+    write /sys/devices/system/cpu/cpufreq/ondemand/touch_load_duration 900
+    write /sys/devices/system/cpu/cpu0/cpufreq/util_threshold 25
+    write /sys/devices/system/cpu/cpu1/cpufreq/util_threshold 30
+    write /sys/devices/system/cpu/cpu2/cpufreq/util_threshold 35
+    write /sys/devices/system/cpu/cpu3/cpufreq/util_threshold 40
 
     # KRAIT C1 STATE (screen flicking if enabled)
     write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 0
@@ -271,14 +258,16 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
 
-    # Set GPU governor to simple
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
+    # Set GPU governor to interactive
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor interactive
+
+    # Speed up io
+    write /sys/block/mmcblk0/queue/nr_requests 256
 
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
 
-    # Ensure that fsync is enabled per default to prevent data loss
-    write /sys/module/sync/parameters/fsync_enabled 0
+    # <-- Revival Tweaks END -->
 
     # disable diag port
     rm /dev/diag
@@ -423,6 +412,14 @@ service charger /sbin/healthd -c
     class charger
     critical
     seclabel u:r:healthd:s0
+
+# Use mpdfake service to absorb logcat spam
+service mpdfake /system/bin/mpdfake
+    class core
+    user root
+    group system
+    socket pb stream 660 root system
+    seclabel u:r:init:s0
 
 service thermald /system/bin/thermald
     class main
