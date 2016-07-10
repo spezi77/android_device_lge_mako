@@ -25,3 +25,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
    BUILD_FINGERPRINT=google/occam/mako:6.0.1/MOB30R/2775141:user/release-keys \
    PRIVATE_BUILD_DESC="occam-user 6.0.1 MOB30R 2775141 release-keys"
 
+# Set a proper title for kernel build
+export LOCALVERSION="-N4-revival-marshmallow-r03-CM-UBERTC-5.4"
+
