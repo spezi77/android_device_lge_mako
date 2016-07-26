@@ -280,7 +280,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Snapdragon Camera
 PRODUCT_PACKAGES += \
-    Snap
+    SnapdragonCamera
 
 # unbreak videorecording with Snap
 PRODUCT_PROPERTY_OVERRIDES += \
