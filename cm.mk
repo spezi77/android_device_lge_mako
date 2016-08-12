@@ -26,5 +26,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
    PRIVATE_BUILD_DESC="occam-user 6.0.1 MOB30R 2775141 release-keys"
 
 # Set a proper title for kernel build
-export LOCALVERSION="-N4-revival-marshmallow-r03-CM-UBERTC-5.4"
+export LOCALVERSION="-N4-revival-marshmallow-r07-CM-UBERTC-5.4"
 
