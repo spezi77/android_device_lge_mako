@@ -22,8 +22,8 @@ PRODUCT_MANUFACTURER := LGE
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
    PRODUCT_NAME=occam \
-   BUILD_FINGERPRINT=google/occam/mako:6.0.1/MOB30R/2775141:user/release-keys \
-   PRIVATE_BUILD_DESC="occam-user 6.0.1 MOB30R 2775141 release-keys"
+   BUILD_FINGERPRINT=google/occam/mako:6.0.1/MOB30Z/3084227:user/release-keys \
+   PRIVATE_BUILD_DESC="occam-user 6.0.1 MOB30Z 3084227 release-keys"
 
 # Set a proper title for kernel build
 export LOCALVERSION="-N4-revival-marshmallow-r07-CM-UBERTC-5.4"
