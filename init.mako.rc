@@ -191,6 +191,9 @@ on post-fs-data
     # Disable mpdecision service to prevent conflicts with other hotplug drivers
     stop mpdecision
 
+    # Disable thermald service
+    stop thermald
+
     # adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 70
 
@@ -224,11 +227,17 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu1/cpufreq/util_threshold 30
     write /sys/devices/system/cpu/cpu2/cpufreq/util_threshold 35
     write /sys/devices/system/cpu/cpu3/cpufreq/util_threshold 40
+
     # Set GPU governor to interactive
     write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor interactive
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 200000000
 
     # Speed up io
     write /sys/block/mmcblk0/queue/nr_requests 256
+
+    # enable KSM
+    write /sys/kernel/mm/ksm/run 1
+    write /sys/kernel/mm/ksm/deferred_timer 1
 
     # TCP congestion control
     write /proc/sys/net/ipv4/tcp_congestion_control westwood
